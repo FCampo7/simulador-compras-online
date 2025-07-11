@@ -21,7 +21,17 @@ const listaCarrito = [];
 
 // Agregar un producto al carrito
 function agregarAlCarrito(producto) {
-	listaCarrito.push(producto);
+	const copiaProducto = { ...producto }; // Crea una copia del producto para evitar mutaciones, Lo busque en internet
+
+	const index = listaCarrito.findIndex(
+		(item) => item.nombre === copiaProducto.nombre
+	);
+	if (index > -1) {
+		listaCarrito[index].cantidad += 1;
+	} else {
+		copiaProducto.cantidad = 1; // Inicializa la cantidad del producto
+		listaCarrito.push(copiaProducto);
+	}
 }
 
 // Eliminar un producto del carrito
@@ -30,7 +40,12 @@ function eliminarDelCarrito(producto) {
 	const index = listaCarrito.indexOf(producto);
 
 	if (index > -1) {
-		listaCarrito.splice(index, 1);
+		if (listaCarrito[index].cantidad > 1) {
+			listaCarrito[index].cantidad -= 1; // Reduce la cantidad si es mayor a 1
+		} else {
+			// Si la cantidad es 1, elimina el producto del carrito
+			listaCarrito.splice(index, 1);
+		}
 	}
 }
 
@@ -40,7 +55,7 @@ function calcularTotal() {
 	let total = 0;
 
 	listaCarrito.forEach((producto) => {
-		total += producto.precio;
+		total += producto.precio * producto.cantidad;
 	});
 
 	return total;
@@ -61,6 +76,8 @@ function devolverCarrito() {
 				producto.nombre +
 				" - $" +
 				producto.precio +
+				" - Cantidad: " +
+				producto.cantidad +
 				"\n";
 		});
 	}
