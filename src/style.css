@@ -5,6 +5,37 @@
   font-family: "Arial", sans-serif;
 }
 
+.header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+}
+.header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header nav ul {
+  list-style: none;
+  padding: 0;
+}
+.header nav ul li {
+  display: inline;
+  margin: 0 1rem;
+}
+.header nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.main {
+  padding: 2rem;
+}
+
 .hero {
   height: 100vh;
   display: flex;
@@ -25,6 +56,54 @@
 }
 .hero p {
   font-size: 1.2rem;
+}
+
+.container-products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+.container-products .product {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 1rem;
+  text-align: center;
+  width: 300px;
+}
+.container-products .product .image-container {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.container-products .product .image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+.container-products .product h3 {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+.container-products .product p {
+  font-size: 1.2rem;
+  color: #333;
+}
+.container-products .product button.add-to-cart {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.container-products .product button.add-to-cart:hover {
+  background-color: #218838;
 }
 
 /*# sourceMappingURL=style.css.map */

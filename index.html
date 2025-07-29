@@ -7,6 +7,16 @@
 		<link rel="stylesheet" href="src/style.css" />
 	</head>
 	<body>
+		<header class="header">
+			<nav>
+				<h1>Simulador de compras online</h1>
+				<ul>
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="#product-list">Productos</a></li>
+					<li><a href="./pages/carrito.html">Carrito</a></li>
+				</ul>
+			</nav>
+		</header>
 		<div class="hero">
 			<h1>Simulador de compras online</h1>
 			<h2>Descripción del proyecto</h2>
@@ -15,11 +25,11 @@
 				usuarios pueden agregar productos a un carrito, eliminar
 				productos y ver el total de su compra.
 			</p>
-			<p>
-				Funciona con prompts y alerts, en un futuro será más interactivo
-				y utilizará una interfaz HTML.
-			</p>
 		</div>
+
+		<main class="main">
+			<div id="product-list" class="container-products"></div>
+		</main>
 
 		<script src="src/main.js"></script>
 	</body>

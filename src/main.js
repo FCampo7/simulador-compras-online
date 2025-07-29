@@ -1,16 +1,56 @@
 // Array de objetos de productos
 // Cada objeto tiene un nombre y un precio
 const listaProductos = [
-	{ nombre: "Auriculares Bluetooth", precio: 15000 },
-	{ nombre: "Mouse Gamer", precio: 8000 },
-	{ nombre: "Teclado Mecánico", precio: 12000 },
-	{ nombre: "Monitor 24 pulgadas", precio: 60000 },
-	{ nombre: "Silla Ergonómica", precio: 45000 },
-	{ nombre: "Notebook 14''", precio: 220000 },
-	{ nombre: "Webcam HD", precio: 10000 },
-	{ nombre: "Parlantes Estéreo", precio: 7000 },
-	{ nombre: "Disco SSD 512GB", precio: 30000 },
-	{ nombre: "Cargador USB-C", precio: 5000 },
+	{
+		nombre: "Auriculares Bluetooth",
+		image: "auriculares-bt.jpg",
+		precio: 15000,
+	},
+	{
+		nombre: "Mouse Gamer",
+		image: "mouse-gamer.jpeg",
+		precio: 8000,
+	},
+	{
+		nombre: "Teclado Mecánico",
+		image: "teclado-mecanico.jpeg",
+		precio: 12000,
+	},
+	{
+		nombre: "Monitor 24 pulgadas",
+		image: "monitor-24.jpeg",
+		precio: 60000,
+	},
+	{
+		nombre: "Silla Ergonómica",
+		image: "silla-ergonomica.jpeg",
+		precio: 45000,
+	},
+	{
+		nombre: "Notebook 14''",
+		image: "notebook-14.jpeg",
+		precio: 220000,
+	},
+	{
+		nombre: "Webcam HD",
+		image: "webcam-hd.jpeg",
+		precio: 10000,
+	},
+	{
+		nombre: "Parlantes Estéreo",
+		image: "parlantes-estereo.jpeg",
+		precio: 7000,
+	},
+	{
+		nombre: "Disco SSD 512GB",
+		image: "disco-ssd-512gb.jpeg",
+		precio: 30000,
+	},
+	{
+		nombre: "Cargador USB-C",
+		image: "cargador-usb-c.jpeg",
+		precio: 5000,
+	},
 ];
 
 // Array para almacenar los productos del carrito
@@ -169,5 +209,25 @@ function simulador() {
 	);
 }
 
-// Ejecución de la simulación
-simulador();
+let productList = document.getElementById("product-list");
+
+listaProductos.forEach((producto) => {
+	let productElement = document.createElement("div");
+	productElement.className = "product";
+	productElement.innerHTML = `
+			<div class="image-container">
+				<img src="../src/images/${producto.image}" alt="${producto.nombre}" />
+			</div>
+			<h3>${producto.nombre}</h3>
+			<p>Precio: $${producto.precio}</p>
+			<button class="add-to-cart">Agregar al carrito</button>
+		`;
+	productList.appendChild(productElement);
+
+	let addToCartButton = productElement.querySelector(".add-to-cart");
+	addToCartButton.addEventListener("click", () => {
+		agregarAlCarrito(producto);
+		localStorage.setItem("carrito", JSON.stringify(listaCarrito));
+		alert(`${producto.nombre} agregado al carrito.`);
+	});
+});
