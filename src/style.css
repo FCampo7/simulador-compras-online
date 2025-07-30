@@ -105,6 +105,13 @@ body {
   min-height: 100vh;
 }
 
+.empty-cart {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: 2rem;
+}
+
 .container-products {
   display: flex;
   flex-wrap: wrap;

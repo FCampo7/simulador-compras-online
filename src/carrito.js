@@ -39,6 +39,9 @@ function actualizarTotal() {
 	if (totalPriceElement) {
 		totalPriceElement.textContent = `$${calcularTotal().toFixed(2)}`;
 	}
+	if (cartItems.length === 0) {
+		cartList.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
+	}
 }
 
 function guardarCarrito() {
