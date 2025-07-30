@@ -1,10 +1,7 @@
 let cartList = document.getElementById("cart-list");
 let storedCart = localStorage.getItem("cart");
 
-let cartItems = [];
-if (storedCart) {
-	cartItems = JSON.parse(storedCart);
-}
+let cartItems = storedCart ? JSON.parse(storedCart) : [];
 
 // Eliminar un producto del carrito
 // Busca el producto en el carrito y lo elimina si existe

@@ -55,11 +55,8 @@ const listaProductos = [
 
 // Array para almacenar los productos del carrito
 // Inicialmente está vacío
-let listaCarrito = [];
 let storedCartProducto = localStorage.getItem("cart");
-if (storedCartProducto) {
-	listaCarrito = JSON.parse(storedCartProducto);
-}
+let listaCarrito = storedCartProducto ? JSON.parse(storedCartProducto) : [];
 
 // Agregar un producto al carrito
 function agregarAlCarrito(producto) {
