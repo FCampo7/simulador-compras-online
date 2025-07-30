@@ -33,6 +33,7 @@
 .header nav ul li a {
   color: white;
   text-decoration: none;
+  padding: 1rem 0;
 }
 
 .main {
@@ -70,6 +71,7 @@
   color: white;
   cursor: pointer;
   z-index: 0;
+  text-decoration: none;
 }
 .hero .bajar .animation {
   margin-top: 30px;
@@ -153,6 +155,18 @@
 }
 .container-products .product .buttons-controller .increase-quantity:hover {
   background-color: #388e3c;
+}
+.container-products .product .buttons-controller .quantity-input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.25rem;
+}
+.container-products .product .buttons-controller .quantity-input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
 }
 .container-products .product button.remove-from-cart {
   background-color: #f44336;

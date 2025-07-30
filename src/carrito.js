@@ -1,5 +1,5 @@
 let cartList = document.getElementById("cart-list");
-let storedCart = localStorage.getItem("carrito");
+let storedCart = localStorage.getItem("cart");
 
 let cartItems = [];
 if (storedCart) {
@@ -33,97 +33,7 @@ function calcularTotal() {
 	return total;
 }
 
-// Renderiza los productos en el carrito
-// Crea elementos HTML para cada producto en el carrito y los agrega al DOM
-cartItems.forEach((item) => {
-	let cartItemElement = document.createElement("div");
-
-	cartItemElement.className = "product";
-	cartItemElement.innerHTML = `
-		<div class="image-container">
-			<img
-				src="../src/images/${item.image}"
-				alt="${item.nombre}"
-			/>
-		</div>
-		<h3>${item.nombre}</h3>
-		<p>Precio: $${item.precio.toFixed(2)}</p>
-		<div class="buttons-controller">
-			<button class="decrease-quantity">-</button>
-			<input
-				type="number"
-				value="${item.cantidad}"
-				min="1"
-				class="quantity-input"
-			/>
-			<button class="increase-quantity">+</button>
-		</div>
-		<button class="remove-from-cart">Eliminar</button>
-	`;
-	cartList.appendChild(cartItemElement);
-
-	// Agrega eventos a los botones de cada producto en el carrito
-	// Permite aumentar, disminuir la cantidad o eliminar el producto del carrito
-	let decreaseButton = cartItemElement.querySelector(".decrease-quantity");
-	let increaseButton = cartItemElement.querySelector(".increase-quantity");
-	let quantityInput = cartItemElement.querySelector(".quantity-input");
-	let removeButton = cartItemElement.querySelector(".remove-from-cart");
-
-	decreaseButton.addEventListener("click", () => {
-		let quantity = parseInt(quantityInput.value);
-		if (quantity > 1) {
-			quantityInput.value = quantity - 1;
-			item.cantidad -= 1;
-		} else {
-			cartList.removeChild(cartItemElement);
-			item.cantidad = 0;
-			eliminarDelCarrito(item);
-		}
-		localStorage.setItem("carrito", JSON.stringify(cartItems));
-		actualizarTotal();
-	});
-
-	increaseButton.addEventListener("click", () => {
-		let quantity = parseInt(quantityInput.value);
-		quantityInput.value = quantity + 1;
-		item.cantidad += 1;
-		localStorage.setItem("carrito", JSON.stringify(cartItems));
-		actualizarTotal();
-	});
-
-	removeButton.addEventListener("click", () => {
-		cartList.removeChild(cartItemElement);
-		item.cantidad = 0;
-		eliminarDelCarrito(item);
-		localStorage.setItem("carrito", JSON.stringify(cartItems));
-		actualizarTotal();
-	});
-
-	quantityInput.addEventListener("change", () => {
-		let quantity = parseInt(quantityInput.value);
-		if (quantity < 1) {
-			quantityInput.value = 1;
-			item.cantidad = 1;
-		} else {
-			item.cantidad = quantity;
-		}
-		localStorage.setItem("carrito", JSON.stringify(cartItems));
-		actualizarTotal();
-	});
-
-	quantityInput.addEventListener("input", () => {
-		let quantity = parseInt(quantityInput.value);
-		if (isNaN(quantity) || quantity < 1) {
-			quantityInput.value = 1;
-			item.cantidad = 1;
-		} else {
-			item.cantidad = quantity;
-		}
-		localStorage.setItem("carrito", JSON.stringify(cartItems));
-		actualizarTotal();
-	});
-});
-
+// Actualizar el total en el DOM
 function actualizarTotal() {
 	let totalPriceElement = document.getElementById("total-price");
 	if (totalPriceElement) {
@@ -131,4 +41,90 @@ function actualizarTotal() {
 	}
 }
 
-actualizarTotal();
+function guardarCarrito() {
+	localStorage.setItem("cart", JSON.stringify(cartItems));
+	actualizarTotal();
+}
+
+// Renderiza los productos en el carrito
+// Crea elementos HTML para cada producto en el carrito y los agrega al DOM
+function renderizarCarrito() {
+	cartItems.forEach((item) => {
+		let cartItemElement = document.createElement("div");
+
+		cartItemElement.className = "product";
+		cartItemElement.innerHTML = `
+			<div class="image-container">
+				<img
+					src="../src/images/${item.image}"
+					alt="${item.nombre}"
+				/>
+			</div>
+			<h3>${item.nombre}</h3>
+			<p>Precio: $${item.precio.toFixed(2)}</p>
+			<div class="buttons-controller">
+				<button class="decrease-quantity">-</button>
+				<input
+					type="number"
+					value="${item.cantidad}"
+					min="1"
+					class="quantity-input"
+				/>
+				<button class="increase-quantity">+</button>
+			</div>
+			<button class="remove-from-cart">Eliminar</button>
+		`;
+		cartList.appendChild(cartItemElement);
+
+		// Agrega eventos a los botones de cada producto en el carrito
+		// Permite aumentar, disminuir la cantidad o eliminar el producto del carrito
+		let decreaseButton =
+			cartItemElement.querySelector(".decrease-quantity");
+		let increaseButton =
+			cartItemElement.querySelector(".increase-quantity");
+		let quantityInput = cartItemElement.querySelector(".quantity-input");
+		let removeButton = cartItemElement.querySelector(".remove-from-cart");
+
+		decreaseButton.addEventListener("click", () => {
+			let quantity = parseInt(quantityInput.value);
+			if (quantity > 1) {
+				quantityInput.value = quantity - 1;
+				item.cantidad -= 1;
+			} else {
+				cartList.removeChild(cartItemElement);
+				item.cantidad = 0;
+				eliminarDelCarrito(item);
+			}
+			guardarCarrito();
+		});
+
+		increaseButton.addEventListener("click", () => {
+			let quantity = parseInt(quantityInput.value);
+			quantityInput.value = quantity + 1;
+			item.cantidad += 1;
+			guardarCarrito();
+		});
+
+		removeButton.addEventListener("click", () => {
+			cartList.removeChild(cartItemElement);
+			item.cantidad = 0;
+			eliminarDelCarrito(item);
+			guardarCarrito();
+		});
+
+		quantityInput.addEventListener("change", () => {
+			let quantity = parseInt(quantityInput.value);
+			if (quantity < 1) {
+				quantityInput.value = 1;
+				item.cantidad = 1;
+			} else {
+				item.cantidad = quantity;
+			}
+			guardarCarrito();
+		});
+	});
+
+	actualizarTotal();
+}
+
+renderizarCarrito();

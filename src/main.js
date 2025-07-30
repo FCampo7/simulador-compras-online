@@ -55,11 +55,11 @@ const listaProductos = [
 
 // Array para almacenar los productos del carrito
 // Inicialmente está vacío
-const listaCarrito = [];
-
-listaCarrito.push(...(JSON.parse(localStorage.getItem("carrito")) || []));
-
-// Funciones para manejar el carrito de compras
+let listaCarrito = [];
+let storedCartProducto = localStorage.getItem("cart");
+if (storedCartProducto) {
+	listaCarrito = JSON.parse(storedCartProducto);
+}
 
 // Agregar un producto al carrito
 function agregarAlCarrito(producto) {
@@ -74,34 +74,44 @@ function agregarAlCarrito(producto) {
 		copiaProducto.cantidad = 1; // Inicializa la cantidad del producto
 		listaCarrito.push(copiaProducto);
 	}
+	localStorage.setItem("cart", JSON.stringify(listaCarrito));
 }
 
-let productList = document.getElementById("product-list");
+function mostrarNotificacion() {
+	let notification = document.getElementsByClassName("notification");
 
-listaProductos.forEach((producto) => {
-	let productElement = document.createElement("div");
-	productElement.className = "product";
-	productElement.innerHTML = `
-			<div class="image-container">
-				<img src="../src/images/${producto.image}" alt="${producto.nombre}" />
-			</div>
-			<h3>${producto.nombre}</h3>
-			<p>Precio: $${producto.precio}</p>
-			<button class="add-to-cart">Agregar al carrito</button>
-		`;
-	productList.appendChild(productElement);
+	notification[0].style.visibility = "visible";
 
-	let addToCartButton = productElement.querySelector(".add-to-cart");
+	setTimeout(() => {
+		notification[0].style.visibility = "hidden";
+	}, 5000);
+}
 
-	addToCartButton.addEventListener("click", () => {
-		agregarAlCarrito(producto);
-		localStorage.setItem("carrito", JSON.stringify(listaCarrito));
-		let notification = document.getElementsByClassName("notification");
-		notification[0].style.visibility = "visible";
-		setTimeout(() => {
-			let notification =
-				document.getElementsByClassName("notification")[0];
-			notification.style.visibility = "hidden";
-		}, 5000);
+// Renderiza los productos en el DOM
+// Crea elementos HTML para cada producto y los agrega al contenedor de productos
+function renderizarProductos() {
+	let productList = document.getElementById("product-list");
+	productList.innerHTML = ""; // Limpia el contenedor antes de renderizar
+	listaProductos.forEach((producto) => {
+		let productElement = document.createElement("div");
+		productElement.className = "product";
+		productElement.innerHTML = `
+				<div class="image-container">
+					<img src="../src/images/${producto.image}" alt="${producto.nombre}" />
+				</div>
+				<h3>${producto.nombre}</h3>
+				<p>Precio: $${producto.precio}</p>
+				<button class="add-to-cart">Agregar al carrito</button>
+			`;
+		productList.appendChild(productElement);
+
+		let addToCartButton = productElement.querySelector(".add-to-cart");
+
+		addToCartButton.addEventListener("click", () => {
+			agregarAlCarrito(producto);
+			mostrarNotificacion();
+		});
 	});
-});
+}
+
+renderizarProductos();
