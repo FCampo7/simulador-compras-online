@@ -97,7 +97,7 @@ function renderizarProductos() {
 		productElement.className = "product";
 		productElement.innerHTML = `
 				<div class="image-container">
-					<img src="../src/images/${producto.image}" alt="${producto.nombre}" />
+					<img src="./src/images/${producto.image}" alt="${producto.nombre}" />
 				</div>
 				<h3>${producto.nombre}</h3>
 				<p>Precio: $${producto.precio}</p>
