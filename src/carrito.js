@@ -63,16 +63,16 @@ function renderizarCarrito() {
 			<h3>${item.nombre}</h3>
 			<p>Precio: $${item.precio.toFixed(2)}</p>
 			<div class="buttons-controller">
-				<button class="decrease-quantity">-</button>
+				<button class="decrease-quantity"><i class="fas fa-minus"></i></button>
 				<input
 					type="number"
 					value="${item.cantidad}"
 					min="1"
 					class="quantity-input"
 				/>
-				<button class="increase-quantity">+</button>
+				<button class="increase-quantity"><i class="fas fa-plus"></i></button>
 			</div>
-			<button class="remove-from-cart">Eliminar</button>
+			<button class="remove-from-cart"><i class="fas fa-trash"></i></button>
 		`;
 		cartList.appendChild(cartItemElement);
 
