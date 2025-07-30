@@ -3,8 +3,15 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Simulador de compras online</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+			integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
 		<link rel="stylesheet" href="src/style.css" />
+		<title>Simulador de compras online</title>
 	</head>
 	<body>
 		<header class="header">
@@ -13,7 +20,11 @@
 				<ul>
 					<li><a href="index.html">Inicio</a></li>
 					<li><a href="#product-list">Productos</a></li>
-					<li><a href="./pages/carrito.html">Carrito</a></li>
+					<li>
+						<a href="./pages/carrito.html">
+							<i class="fas fa-cart-shopping"></i> Carrito</a
+						>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -25,11 +36,21 @@
 				usuarios pueden agregar productos a un carrito, eliminar
 				productos y ver el total de su compra.
 			</p>
+			<div class="bajar">
+				<p>Desplázate hacia abajo para ver los productos</p>
+				<i class="fas fa-chevron-down animation"></i>
+			</div>
 		</div>
 
 		<main class="main">
+			<h2>Lista de Productos</h2>
+			<p>Selecciona un producto para agregar al carrito.</p>
 			<div id="product-list" class="container-products"></div>
 		</main>
+
+		<div class="notification">
+			<p>Producto agregado</p>
+		</div>
 
 		<script src="src/main.js"></script>
 	</body>
