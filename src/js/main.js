@@ -5,8 +5,8 @@
 
 // Array de objetos de productos
 // Cada objeto tiene un nombre y un precio
-// Tengo preparado un json con los productos, pero por ahora lo haré así
-// para no complicarme con el fetch
+//* Tengo preparado un json con los productos, pero por ahora lo haré así
+//* para no complicarme con el fetch
 const listaProductos = [
 	{
 		nombre: "Auriculares Bluetooth",
