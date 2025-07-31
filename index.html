@@ -10,7 +10,7 @@
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		/>
-		<link rel="stylesheet" href="src/style.css" />
+		<link rel="stylesheet" href="src/css/style.css" />
 		<title>Simulador de compras online</title>
 	</head>
 	<body>
@@ -19,7 +19,7 @@
 				<h1>Simulador de compras online</h1>
 				<ul>
 					<li><a href="index.html">Inicio</a></li>
-					<li><a href="#product-list">Productos</a></li>
+					<li><a href="#product-section">Productos</a></li>
 					<li>
 						<a href="./pages/carrito.html">
 							<i class="fas fa-cart-shopping"></i
@@ -36,13 +36,13 @@
 				usuarios pueden agregar productos a un carrito, eliminar
 				productos y ver el total de su compra.
 			</p>
-			<a href="#product-list" class="bajar">
+			<a href="#product-section" class="bajar">
 				<p>Desplázate hacia abajo para ver los productos</p>
 				<i class="fas fa-chevron-down animation"></i>
 			</a>
 		</div>
 
-		<main class="main">
+		<main id="product-section" class="main">
 			<h2>Lista de Productos</h2>
 			<p>Selecciona un producto para agregar al carrito.</p>
 			<div id="product-list" class="container-products"></div>
@@ -52,6 +52,6 @@
 			<p>Producto agregado</p>
 		</div>
 
-		<script src="src/main.js"></script>
+		<script src="src/js/main.js"></script>
 	</body>
 </html>
