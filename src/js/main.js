@@ -83,8 +83,10 @@ function agregarAlCarrito(producto) {
 	localStorage.setItem("cart", JSON.stringify(listaCarrito));
 }
 
-function mostrarNotificacion() {
+function mostrarNotificacion(producto) {
 	let notification = document.getElementsByClassName("notification");
+
+	notification[0].innerHTML = `<p>${producto.nombre} agregado al carrito</p>`;
 
 	notification[0].style.visibility = "visible";
 	notification[0].classList.remove("fade-out");
@@ -121,7 +123,7 @@ function renderizarProductos() {
 
 		addToCartButton.addEventListener("click", () => {
 			agregarAlCarrito(producto);
-			mostrarNotificacion();
+			mostrarNotificacion(producto);
 		});
 	});
 }
