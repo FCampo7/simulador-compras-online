@@ -1,5 +1,6 @@
-// IMPORTANTE!!!!
-// Actualmente no esta en uso, era para simular la primera entrega
+//! IMPORTANTE!!!!
+// Actualmente no esta en uso, era para simular
+// la primera entrega
 
 // Devuelve un string con el contenido del carrito
 function devolverCarrito() {

@@ -1,3 +1,8 @@
+//! IMPORTANTE!!!!
+// La mezcla de español e ingles es intencional
+// Para no mezclar nombres de variables como cantidad y quantity
+// que podrían llevar a errores o confusiones
+
 let cartList = document.getElementById("cart-list");
 let storedCart = localStorage.getItem("cart");
 

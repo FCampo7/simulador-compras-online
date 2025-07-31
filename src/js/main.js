@@ -1,3 +1,8 @@
+//! IMPORTANTE!!!!
+// La mezcla de español e ingles es intencional
+// Para no mezclar nombres de variables
+// que podrían llevar a errores o confusiones
+
 // Array de objetos de productos
 // Cada objeto tiene un nombre y un precio
 
