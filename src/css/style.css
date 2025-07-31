@@ -126,6 +126,7 @@ body {
   padding: 1rem;
   text-align: center;
   width: 300px;
+  background: #1e1e1e;
 }
 .container-products .product .image-container {
   width: 100%;
@@ -134,6 +135,8 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background: white;
+  border-radius: 25px;
 }
 .container-products .product .image-container img {
   max-width: 100%;
@@ -242,11 +245,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   position: fixed;
   bottom: 20px;
-  right: 30%;
-  left: 30%;
+  left: 20px;
   height: 60px;
+  max-width: 300px;
   padding: 20px;
   border-radius: 25px;
   background: #6200ea;
@@ -254,6 +258,14 @@ body {
 }
 .notification p {
   background: none;
+}
+
+.fade-in {
+  animation: fade-in 1s ease-in-out 1;
+}
+
+.fade-out {
+  animation: fade-out 1s ease-in-out 1;
 }
 
 @keyframes bounce {
@@ -265,6 +277,22 @@ body {
   }
   60% {
     transform: translateY(-15px);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

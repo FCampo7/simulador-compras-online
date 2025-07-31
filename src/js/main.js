@@ -87,10 +87,16 @@ function mostrarNotificacion() {
 	let notification = document.getElementsByClassName("notification");
 
 	notification[0].style.visibility = "visible";
+	notification[0].classList.remove("fade-out");
+	notification[0].classList.add("fade-in");
 
 	setTimeout(() => {
-		notification[0].style.visibility = "hidden";
-	}, 5000);
+		notification[0].classList.remove("fade-in");
+		notification[0].classList.add("fade-out");
+		setTimeout(() => {
+			notification[0].style.visibility = "hidden";
+		}, 1000);
+	}, 4000);
 }
 
 // Renderiza los productos en el DOM
