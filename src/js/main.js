@@ -5,7 +5,6 @@
 
 // Array de objetos de productos
 // Cada objeto tiene un nombre y un precio
-
 // Tengo preparado un json con los productos, pero por ahora lo haré así
 // para no complicarme con el fetch
 const listaProductos = [
@@ -67,6 +66,8 @@ let storedCartProducto = localStorage.getItem("cart");
 let listaCarrito = storedCartProducto ? JSON.parse(storedCartProducto) : [];
 
 // Agregar un producto al carrito
+//* Tendría que manejarme por ID pero como me di cuenta tarde
+//* lo hago por nombre, no es lo mejor pero funciona
 function agregarAlCarrito(producto) {
 	const copiaProducto = { ...producto }; // Crea una copia del producto para evitar mutaciones, Lo busque en internet
 

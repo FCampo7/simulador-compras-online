@@ -53,6 +53,8 @@ function guardarCarrito() {
 
 // Renderiza los productos en el carrito
 // Crea elementos HTML para cada producto en el carrito y los agrega al DOM
+//? Me quedó una función muy grande
+//? Pero no se si vale la pena dividirla
 function renderizarCarrito() {
 	cartItems.forEach((item) => {
 		let cartItemElement = document.createElement("div");
