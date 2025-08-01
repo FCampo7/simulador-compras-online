@@ -107,7 +107,7 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
 }
 
 .hero {
@@ -203,10 +203,8 @@
   .main-container {
     flex-direction: column;
     align-items: center;
-  }
-  .main-container #cart-list {
     width: 100%;
-    margin-bottom: 2rem;
+    min-height: calc(100vh - 60px);
   }
 }
 .empty-cart {
