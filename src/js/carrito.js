@@ -37,10 +37,25 @@ function calcularTotal() {
 
 // Actualizar el total en el DOM
 function actualizarTotal() {
-	let totalPriceElement = document.getElementById("total-price");
-	if (totalPriceElement) {
-		totalPriceElement.textContent = `$${calcularTotal().toFixed(2)}`;
-	}
+	let totalContainer = document.querySelector(".total-container");
+	totalContainer.innerHTML = "<h3>Detalle del pedido</h3>";
+
+	// Crea un contenedor para los productos
+	let totalItems = document.createElement("div");
+	totalItems.className = "total-items";
+	totalItems.innerHTML = "<p>";
+	cartItems.forEach((element) => {
+		totalItems.innerHTML += `${element.cantidad} x ${
+			element.nombre
+		} - $${element.precio.toFixed(2)}<br>`;
+	});
+	totalItems.innerHTML += "</p>";
+
+	// Agrega el contenedor de productos al totalContainer
+	totalContainer.appendChild(totalItems);
+	totalContainer.innerHTML += `<p class="total">Total: $${calcularTotal().toFixed(
+		2
+	)}</p>`;
 	if (cartItems.length === 0) {
 		cartList.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
 	}
