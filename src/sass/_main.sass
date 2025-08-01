@@ -19,6 +19,7 @@
     padding: 2rem
     
     height: 100vh
+    width: calc(100vw - 1rem)
     
     background: linear-gradient(to bottom, rgba(66, 39, 174, 0.5), rgba(0, 0, 0, 0.5))
     color: colors.$font-color
@@ -61,6 +62,7 @@
     flex-direction: column
     align-items: center
     justify-content: center
+    
     width: 100%
 
     h2
@@ -71,12 +73,13 @@
         color: colors.$font-color
 
 .container-products
+    padding: 2rem
+    margin: 2rem 0
+    
     display: flex
     flex-wrap: wrap
     justify-content: center
     gap: 2rem
-    padding: 2rem
-    margin: 2rem 0
 
     .product
         border: 1px solid colors.$secondary-color
