@@ -83,6 +83,9 @@ function agregarAlCarrito(producto) {
 	localStorage.setItem("cart", JSON.stringify(listaCarrito));
 }
 
+// Mostrar una notificación al usuario cuando un producto es agregado al carrito
+// Aplica un efecto de fade-in al aparecer y fade-out al desaparecer
+// La notificación se muestra por 5 segundos
 function mostrarNotificacion(producto) {
 	let notification = document.getElementsByClassName("notification");
 
@@ -128,10 +131,5 @@ function renderizarProductos() {
 	});
 }
 
-let menuToggle = document.getElementById("menu-toggle");
-let navLinks = document.getElementById("nav-links");
-menuToggle.addEventListener("click", () => {
-	navLinks.classList.toggle("active");
-});
-
+// Inicializa la carga de productos al cargar la página
 renderizarProductos();

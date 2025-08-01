@@ -1,5 +1,8 @@
 @use 'colors'
 
+//! Este es el código para el menú de navegación
+//! Costó hacerlo hamburguesa pero me salió
+
 .header
     position: fixed
     top: 0
@@ -46,8 +49,12 @@
 
     .hamburger
         visibility: hidden
+        padding: 4px
         cursor: pointer
+        border: 1px solid colors.$bg-color-light
+        border-radius: 8px
         color: colors.$font-color
+        background: colors.$bg-color-light
 
         i
             font-size: 1.5rem
@@ -64,7 +71,7 @@
         left: 0
         width: 100%
 
-        flex-direction: column !important
+        flex-direction: column !important // No sé porqué no funciona si no lo hago important
 
     .nav-links a
         padding: 1rem
@@ -73,10 +80,7 @@
 
         background: colors.$bg-color
 
-    .header 
+    .header
         .hamburger
             visibility: visible
-            border: 1px solid colors.$bg-color-light
-            background: colors.$bg-color-light
-            padding: 4px
-            border-radius: 8px
+            
