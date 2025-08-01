@@ -1,0 +1,82 @@
+@use 'colors'
+
+.header
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 60px
+    z-index: 1000
+    padding: 0 1rem
+    
+    display: flex
+    justify-content: center
+    align-items: center
+    
+    background-color: colors.$bg-color
+    color: colors.$font-color
+    text-align: center
+
+    nav
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: space-between
+        width: 100%
+        background: colors.$bg-color
+    
+    .nav-links
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+        
+        color: colors.$font-color
+        background: colors.$bg-color
+
+    .nav-links a
+        padding: 0.5rem 1rem
+        background: colors.$bg-color
+        color: colors.$font-color
+        text-decoration: none
+        text-align: center
+        
+        &:hover
+            background: colors.$bg-color-light
+
+    .hamburger
+        visibility: hidden
+        cursor: pointer
+        color: colors.$font-color
+
+        i
+            font-size: 1.5rem
+
+    .active
+        visibility: visible
+        
+@media (max-width: 768px)
+    .nav-links
+        visibility: hidden
+
+        position: absolute
+        top: 60px
+        left: 0
+        width: 100%
+
+        flex-direction: column !important
+
+    .nav-links a
+        padding: 1rem
+        border-bottom: 1px solid colors.$bg-color-light
+        width: 100%
+
+        background: colors.$bg-color
+
+    .header 
+        .hamburger
+            visibility: visible
+            border: 1px solid colors.$bg-color-light
+            background: colors.$bg-color-light
+            padding: 4px
+            border-radius: 8px

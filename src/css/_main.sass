@@ -1,0 +1,203 @@
+@use 'colors'
+
+.main
+    margin-top: 1rem
+    
+    display: flex
+    flex-direction: column
+    align-items: center
+    
+    width: 100%
+    min-height: 100vh
+
+.hero
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    
+    height: 100vh
+    
+    background: linear-gradient(to bottom, rgba(66, 39, 174, 0.5), rgba(0, 0, 0, 0.5))
+    color: colors.$font-color
+    text-align: center
+
+    h1
+        margin-bottom: 1rem
+        font-size: 3rem
+    
+    h2
+        font-size: 2rem
+        margin-bottom: 2rem
+    
+    p
+        font-size: 1.2rem
+
+    .bajar
+        position: absolute
+        bottom: 20px
+        
+        cursor: pointer
+
+        color: colors.$font-color
+        text-decoration: none
+        font-size: 2rem
+
+        .animation
+            margin-top: 30px
+            animation: bounce 2s infinite
+
+.empty-cart
+    margin-top: 2rem
+    
+    text-align: center
+    font-size: 1.5rem
+    color: colors.$font-color
+
+#product-section
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 100%
+
+    h2
+        margin-top: 60px
+        text-align: center
+        font-size: 2rem
+        margin-bottom: 1rem
+        color: colors.$font-color
+
+.container-products
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: 2rem
+    padding: 2rem
+    margin: 2rem 0
+
+    .product
+        border: 1px solid colors.$secondary-color
+        border-radius: 25px
+        padding: 1rem
+        text-align: center
+        width: 300px
+        background: colors.$bg-color-light
+
+        .image-container
+            width: 100%
+            height: 300px
+            display: flex
+            justify-content: center
+            align-items: center
+            overflow: hidden
+            background: white
+            border-radius: 25px
+            
+            img
+                max-width: 100%
+                height: auto
+                border-radius: 4px
+
+        h3
+            font-size: 1.5rem
+            margin: 0.5rem 0
+            background: none
+
+        p
+            font-size: 1.2rem
+            color: colors.$font-color
+            background: none
+
+        .buttons-controller
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: 0.5rem
+            margin-top: 1rem
+            margin-bottom: 1rem
+
+            .decrease-quantity
+                display: flex
+                justify-content: center
+                align-items: center
+                
+                background-color: colors.$danger-color
+                color: colors.$font-color
+                
+                border: none
+                padding: 0.5rem 1rem
+                border-radius: 4px
+
+                cursor: pointer
+                
+                width: 25px
+                height: 25px
+
+                &:hover
+                    background-color: colors.$danger-color-dark
+
+            .increase-quantity
+                display: flex
+                justify-content: center
+                align-items: center
+
+                background-color: colors.$secondary-color
+                color: colors.$font-color
+
+                border: none
+                padding: 0.5rem 1rem
+                border-radius: 4px
+
+                cursor: pointer
+
+                width: 25px
+                height: 25px
+
+                &:hover
+                    background-color: colors.$secondary-color-dark
+
+            .quantity-input
+                width: 50px
+                text-align: center
+                border: 1px solid #ddd
+                border-radius: 4px
+                padding: 0.25rem
+                &[type="number"]::-webkit-inner-spin-button
+                    -webkit-appearance: none
+                    -moz-appearance: textfield
+                    appearance: none
+
+
+        
+        button.remove-from-cart
+            background-color: colors.$danger-color
+            color: colors.$font-color
+            border: none
+            padding: 0.5rem 1rem
+            border-radius: 4px
+            cursor: pointer
+
+            &:hover
+                background-color: colors.$danger-color-dark
+
+        button.add-to-cart
+            background-color: colors.$secondary-color
+            color: colors.$bg-color
+            font-weight: bold
+            border: none
+            margin-top: 1rem
+            padding: 0.5rem 1rem
+            border-radius: 4px
+            cursor: pointer
+
+            &:hover
+                background-color: colors.$secondary-color-dark
+
+.total-container
+    margin-top: 2rem
+    text-align: center
+    .total
+        font-size: 1.5rem
+        font-weight: bold
+        color: colors.$font-color

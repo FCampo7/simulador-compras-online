@@ -128,4 +128,10 @@ function renderizarProductos() {
 	});
 }
 
+let menuToggle = document.getElementById("menu-toggle");
+let navLinks = document.getElementById("nav-links");
+menuToggle.addEventListener("click", () => {
+	navLinks.classList.toggle("active");
+});
+
 renderizarProductos();

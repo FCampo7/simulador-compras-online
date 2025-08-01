@@ -16,36 +16,39 @@
 	<body>
 		<header class="header">
 			<nav>
-				<h1>Simulador de compras online</h1>
-				<ul>
-					<li><a href="index.html">Inicio</a></li>
-					<li><a href="#product-section">Productos</a></li>
-					<li>
-						<a href="./pages/carrito.html">
-							<i class="fas fa-cart-shopping"></i
-						></a>
-					</li>
-				</ul>
+				<h1>Sim compras online</h1>
+				<div id="menu-toggle" class="hamburger">
+					<i class="fas fa-bars"></i>
+				</div>
+				<div id="nav-links" class="nav-links">
+					<a href="index.html">Inicio</a>
+					<a href="#product-section">Productos</a>
+					<a href="./pages/carrito.html">
+						<i class="fas fa-cart-shopping"></i
+					></a>
+				</div>
 			</nav>
 		</header>
-		<div class="hero">
-			<h1>Simulador de compras online</h1>
-			<h2>Descripción del proyecto</h2>
-			<p>
-				Este proyecto simula un sistema de compras en línea, donde los
-				usuarios pueden agregar productos a un carrito, eliminar
-				productos y ver el total de su compra.
-			</p>
-			<a href="#product-section" class="bajar">
-				<p>Desplázate hacia abajo para ver los productos</p>
-				<i class="fas fa-chevron-down animation"></i>
-			</a>
-		</div>
 
-		<main id="product-section" class="main">
-			<h2>Lista de Productos</h2>
-			<p>Selecciona un producto para agregar al carrito.</p>
-			<div id="product-list" class="container-products"></div>
+		<main class="main">
+			<section class="hero">
+				<h1>Simulador de compras online</h1>
+				<h2>Descripción del proyecto</h2>
+				<p>
+					Este proyecto simula un sistema de compras en línea, donde
+					los usuarios pueden agregar productos a un carrito, eliminar
+					productos y ver el total de su compra.
+				</p>
+				<a href="#product-section" class="bajar">
+					<p>Desplázate hacia abajo para ver los productos</p>
+					<i class="fas fa-chevron-down animation"></i>
+				</a>
+			</section>
+			<section id="product-section">
+				<h2>Lista de Productos</h2>
+				<p>Selecciona un producto para agregar al carrito.</p>
+				<div id="product-list" class="container-products"></div>
+			</section>
 		</main>
 
 		<div class="notification"></div>
