@@ -136,7 +136,7 @@ function renderizarCarrito() {
 
 		quantityInput.addEventListener("change", () => {
 			let quantity = parseInt(quantityInput.value);
-			if (quantity < 1) {
+			if (quantity < 1 || isNaN(quantity)) {
 				quantityInput.value = 1;
 				item.cantidad = 1;
 			} else {
