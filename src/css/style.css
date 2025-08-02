@@ -379,11 +379,11 @@
   color: #ffffff;
   font-size: 1.2rem;
   border: none;
-  border-radius: 50%;
+  border-radius: 10% 90% 50% 50%/10% 50% 50% 90%;
   cursor: pointer;
 }
 .container-products .product .add-to-cart:hover {
-  background-color: #bb86fc;
+  background-color: #801ef8;
   animation: zoom-in-out 0.5s ease-in-out;
 }
 
