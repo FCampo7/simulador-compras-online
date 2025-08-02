@@ -133,6 +133,14 @@
 .empty-cart
     margin-top: 2rem
     
+    width: 100%
+    height: 100%
+    
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    
     text-align: center
     font-size: 1.5rem
     color: colors.$font-color
@@ -162,12 +170,21 @@
     gap: 2rem
 
     .product
+        position: relative
+        
+        padding: 1rem
+        
+        width: 300px
+        
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        justify-content: center
+
+        background: colors.$bg-color-light
+        
         border: 1px solid colors.$secondary-color
         border-radius: 25px
-        padding: 1rem
-        text-align: center
-        width: 300px
-        background: colors.$bg-color-light
 
         .image-container
             width: 100%
@@ -185,22 +202,25 @@
                 border-radius: 4px
 
         h3
-            font-size: 1.5rem
+            font-size: 1.2rem
             margin: 0.5rem 0
             background: none
 
         p
-            font-size: 1.2rem
+            font-size: 1.5rem
             color: colors.$font-color
             background: none
 
         .buttons-controller
+            margin-top: 1rem
+            margin-bottom: 1rem
+            
             display: flex
             justify-content: center
             align-items: center
             gap: 0.5rem
-            margin-top: 1rem
-            margin-bottom: 1rem
+
+            align-self: center
 
             .decrease-quantity
                 display: flex
@@ -253,28 +273,39 @@
                     -moz-appearance: textfield
                     appearance: none
 
+        .remove-from-cart
+            padding: 0.5rem 1rem
 
-        
-        button.remove-from-cart
+            align-self: center
+            
             background-color: colors.$danger-color
             color: colors.$font-color
+            
             border: none
-            padding: 0.5rem 1rem
             border-radius: 4px
+            
             cursor: pointer
 
             &:hover
                 background-color: colors.$danger-color-dark
 
-        button.add-to-cart
-            background-color: colors.$secondary-color
-            color: colors.$bg-color
-            font-weight: bold
-            border: none
+        .add-to-cart
+            position: absolute
+            top: 60%
+            right: 8%
+            
             margin-top: 1rem
-            padding: 0.5rem 1rem
-            border-radius: 4px
+            padding: 1rem 1rem
+
+            background-color: colors.$primary-color
+            color: colors.$font-color
+            font-size: 1.2rem
+            
+            border: none
+            border-radius: 50%
+            
             cursor: pointer
 
             &:hover
-                background-color: colors.$secondary-color-dark
+                background-color: colors.$primary-color-light
+                animation: zoom-in-out 0.5s ease-in-out

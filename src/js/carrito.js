@@ -83,7 +83,7 @@ function renderizarCarrito() {
 				/>
 			</div>
 			<h3>${item.nombre}</h3>
-			<p>Precio: $${item.precio.toFixed(2)}</p>
+			<p>$${item.precio.toFixed(2)}</p>
 			<div class="buttons-controller">
 				<button class="decrease-quantity"><i class="fas fa-minus"></i></button>
 				<input

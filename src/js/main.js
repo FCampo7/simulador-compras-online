@@ -117,8 +117,8 @@ function renderizarProductos() {
 					<img src="./src/images/${producto.image}" alt="${producto.nombre}" />
 				</div>
 				<h3>${producto.nombre}</h3>
-				<p>Precio: $${producto.precio}</p>
-				<button class="add-to-cart">Agregar al carrito</button>
+				<p>$${producto.precio}</p>
+				<button class="add-to-cart"><i class="fa-solid fa-cart-plus"></i></button>
 			`;
 		productList.appendChild(productElement);
 
