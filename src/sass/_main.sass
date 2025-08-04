@@ -70,7 +70,7 @@
 .main-container
     display: grid
     grid-template-areas: "cart-list total-container"
-    grid-template-columns: 5fr 1fr
+    grid-template-columns: 5fr 400px
     grid-template-rows: auto
     height: calc(100vh - 60px)
 
@@ -83,6 +83,9 @@
         height: calc(100vh - 60px)
     
     .total-container
+        position: fixed
+        top: 2rem
+        right: 2rem
         grid-area: total-container
         
         margin: 60px 2rem 2rem 2rem
@@ -128,6 +131,10 @@
             height: auto
             padding: 1rem
             justify-content: center
+        
+        .total-container
+            position: static
+            margin-top: 0
 
 
 .empty-cart
