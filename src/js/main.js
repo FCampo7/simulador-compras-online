@@ -86,8 +86,16 @@ function agregarAlCarrito(producto) {
 // Mostrar una notificación al usuario cuando un producto es agregado al carrito
 // Aplica un efecto de fade-in al aparecer y fade-out al desaparecer
 // La notificación se muestra por 5 segundos
+let ocultarNotificacionTimeOut;
+let ocultarTotalTimeOut;
+
 function mostrarNotificacion(producto) {
 	let notification = document.getElementsByClassName("notification");
+
+	if (!notification[0]) return;
+
+	clearTimeout(ocultarNotificacionTimeOut);
+	clearTimeout(ocultarTotalTimeOut);
 
 	notification[0].innerHTML = `<p>${producto.nombre} agregado al carrito</p>`;
 
@@ -95,10 +103,10 @@ function mostrarNotificacion(producto) {
 	notification[0].classList.remove("fade-out");
 	notification[0].classList.add("fade-in");
 
-	setTimeout(() => {
+	ocultarNotificacionTimeOut = setTimeout(() => {
 		notification[0].classList.remove("fade-in");
 		notification[0].classList.add("fade-out");
-		setTimeout(() => {
+		ocultarTotalTimeOut = setTimeout(() => {
 			notification[0].style.visibility = "hidden";
 		}, 1000);
 	}, 4000);
