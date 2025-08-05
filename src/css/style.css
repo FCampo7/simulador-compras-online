@@ -73,6 +73,9 @@
   color: #ffffff;
   text-decoration: none;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .header .nav-links a:hover {
   background: #1e1e1e;
@@ -94,6 +97,11 @@
 }
 .header .cart-icon {
   position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 .header .cart-icon .cart-badge {
