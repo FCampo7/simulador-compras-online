@@ -64,6 +64,7 @@ function actualizarTotal() {
 function guardarCarrito() {
 	localStorage.setItem("cart", JSON.stringify(cartItems));
 	actualizarTotal();
+	actualizarBadgeCarrito(cartItems);
 }
 
 // Renderiza los productos en el carrito
@@ -147,6 +148,7 @@ function renderizarCarrito() {
 	});
 
 	actualizarTotal();
+	actualizarBadgeCarrito(cartItems);
 }
 
 renderizarCarrito();

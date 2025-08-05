@@ -61,7 +61,28 @@
 
     .active
         visibility: visible
-        
+
+    .cart-icon
+        position: relative
+        cursor: pointer
+
+        .cart-badge
+            position: absolute
+            top: -8px
+            right: -8px
+
+            width: 14px
+            height: 14px
+            
+            display: flex
+            align-items: center
+            justify-content: center
+
+            background-color: colors.$secondary-color
+            color: colors.$bg-color-light
+            border-radius: 50%
+            font-size: 0.7rem
+
 @media (max-width: 768px)
     .nav-links
         visibility: hidden

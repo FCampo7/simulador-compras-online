@@ -92,6 +92,24 @@
 .header .active {
   visibility: visible;
 }
+.header .cart-icon {
+  position: relative;
+  cursor: pointer;
+}
+.header .cart-icon .cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #03dac6;
+  color: #1e1e1e;
+  border-radius: 50%;
+  font-size: 0.7rem;
+}
 
 @media (max-width: 768px) {
   .nav-links {

@@ -83,6 +83,22 @@ function agregarAlCarrito(producto) {
 	localStorage.setItem("cart", JSON.stringify(listaCarrito));
 }
 
+// Actualiza el badge del carrito con la cantidad de productos
+function actualizarBadgeCarrito(lcart) {
+	let cartBadge = document.getElementById("cart-badge");
+
+	if (lcart.length > 0) {
+		cartBadge.style.display = "flex";
+		cartBadge.innerHTML = lcart.reduce(
+			(total, item) => total + item.cantidad,
+			0
+		);
+	} else {
+		cartBadge.style.display = "none";
+		cartBadge.innerHTML = "0";
+	}
+}
+
 // Mostrar una notificación al usuario cuando un producto es agregado al carrito
 // Aplica un efecto de fade-in al aparecer y fade-out al desaparecer
 // La notificación se muestra por 5 segundos
@@ -135,8 +151,10 @@ function renderizarProductos() {
 		addToCartButton.addEventListener("click", () => {
 			agregarAlCarrito(producto);
 			mostrarNotificacion(producto);
+			actualizarBadgeCarrito(listaCarrito);
 		});
 	});
+	actualizarBadgeCarrito(listaCarrito);
 }
 
 // Inicializa la carga de productos al cargar la página
