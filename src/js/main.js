@@ -89,10 +89,7 @@ function actualizarBadgeCarrito(lcart) {
 
 	if (lcart.length > 0) {
 		cartBadge.style.display = "flex";
-		cartBadge.innerHTML = lcart.reduce(
-			(total, item) => total + item.cantidad,
-			0
-		);
+		cartBadge.innerHTML = lcart.length;
 	} else {
 		cartBadge.style.display = "none";
 		cartBadge.innerHTML = "0";
