@@ -10,7 +10,7 @@ let listaProductos = [];
 // Función para cargar los productos desde un archivo JSON
 // Utiliza fetch para obtener los datos
 async function cargarProductos() {
-	const response = await fetch("../src/json/productos.json");
+	const response = await fetch("./src/json/productos.json");
 	if (!response.ok) {
 		throw new Error("Network response was not ok");
 	}
