@@ -5,61 +5,25 @@
 
 // Array de objetos de productos
 // Cada objeto tiene un nombre y un precio
-//* Tengo preparado un json con los productos, pero por ahora lo haré así
-//* para no complicarme con el fetch
-const listaProductos = [
-	{
-		nombre: "Auriculares Bluetooth",
-		image: "auriculares-bt.jpg",
-		precio: 15000,
-	},
-	{
-		nombre: "Mouse Gamer",
-		image: "mouse-gamer.jpeg",
-		precio: 8000,
-	},
-	{
-		nombre: "Teclado Mecánico",
-		image: "teclado-mecanico.jpeg",
-		precio: 12000,
-	},
-	{
-		nombre: "Monitor 24 pulgadas",
-		image: "monitor-24.jpeg",
-		precio: 60000,
-	},
-	{
-		nombre: "Silla Ergonómica",
-		image: "silla-ergonomica.jpeg",
-		precio: 45000,
-	},
-	{
-		nombre: "Notebook 14''",
-		image: "notebook-14.jpeg",
-		precio: 220000,
-	},
-	{
-		nombre: "Webcam HD",
-		image: "webcam-hd.jpeg",
-		precio: 10000,
-	},
-	{
-		nombre: "Parlantes Estéreo",
-		image: "parlantes-estereo.jpeg",
-		precio: 7000,
-	},
-	{
-		nombre: "Disco SSD 512GB",
-		image: "disco-ssd-512gb.jpeg",
-		precio: 30000,
-	},
-	{
-		nombre: "Cargador USB-C",
-		image: "cargador-usb-c.jpeg",
-		precio: 5000,
-	},
-];
+let listaProductos = [];
 
+// Promesa para cargar los productos desde un archivo JSON
+// Utiliza fetch para obtener los datos y los resuelve o rechaza según el resultado
+const cargarProductos = new Promise((resolve, reject) => {
+	fetch("../src/json/productos.json")
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response.json();
+		})
+		.then((data) => {
+			resolve(data);
+		})
+		.catch((error) => {
+			reject(error);
+		});
+});
 // Array para almacenar los productos del carrito
 // Inicialmente está vacío
 let storedCartProducto = localStorage.getItem("cart");
@@ -127,7 +91,16 @@ function mostrarNotificacion(producto) {
 
 // Renderiza los productos en el DOM
 // Crea elementos HTML para cada producto y los agrega al contenedor de productos
-function renderizarProductos() {
+async function renderizarProductos() {
+	// Espera a que se carguen los productos antes de renderizar
+	await cargarProductos
+		.then((data) => {
+			listaProductos = data;
+		})
+		.catch((error) => {
+			console.error("Error al cargar los productos:", error);
+		});
+
 	let productList = document.getElementById("product-list");
 	productList.innerHTML = ""; // Limpia el contenedor antes de renderizar
 	listaProductos.forEach((producto) => {
