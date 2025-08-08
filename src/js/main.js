@@ -7,23 +7,16 @@
 // Cada objeto tiene un nombre y un precio
 let listaProductos = [];
 
-// Promesa para cargar los productos desde un archivo JSON
-// Utiliza fetch para obtener los datos y los resuelve o rechaza según el resultado
-const cargarProductos = new Promise((resolve, reject) => {
-	fetch("../src/json/productos.json")
-		.then((response) => {
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-			return response.json();
-		})
-		.then((data) => {
-			resolve(data);
-		})
-		.catch((error) => {
-			reject(error);
-		});
-});
+// Función para cargar los productos desde un archivo JSON
+// Utiliza fetch para obtener los datos
+async function cargarProductos() {
+	const response = await fetch("../src/json/productos.json");
+	if (!response.ok) {
+		throw new Error("Network response was not ok");
+	}
+	return response.json();
+}
+
 // Array para almacenar los productos del carrito
 // Inicialmente está vacío
 let storedCartProducto = localStorage.getItem("cart");
@@ -93,13 +86,12 @@ function mostrarNotificacion(producto) {
 // Crea elementos HTML para cada producto y los agrega al contenedor de productos
 async function renderizarProductos() {
 	// Espera a que se carguen los productos antes de renderizar
-	await cargarProductos
-		.then((data) => {
-			listaProductos = data;
-		})
-		.catch((error) => {
-			console.error("Error al cargar los productos:", error);
-		});
+	try {
+		listaProductos = await cargarProductos();
+	} catch (error) {
+		console.error("Error al cargar los productos:", error);
+		return;
+	}
 
 	let productList = document.getElementById("product-list");
 	productList.innerHTML = ""; // Limpia el contenedor antes de renderizar
