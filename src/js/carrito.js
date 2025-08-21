@@ -72,7 +72,17 @@ function actualizarTotal() {
 	totalContainer.appendChild(totalItems);
 	totalContainer.innerHTML += `<p class="total">Total: $${calcularTotal().toFixed(
 		2
-	)}</p>`;
+	)}</p>
+	<button class="btn-finalizar">Finalizar compra</button>`;
+	const btnFinalizar = document.querySelector(".btn-finalizar");
+	btnFinalizar.addEventListener("click", () => {
+		Swal.fire({
+			title: "Error!",
+			text: "Sistema de pagos aún no implementado",
+			icon: "error",
+			confirmButtonText: "Ok",
+		});
+	});
 	if (cartItems.length === 0) {
 		cartList.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
 	}

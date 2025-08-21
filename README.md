@@ -8,17 +8,12 @@ Web que simula un e-commerce, donde se puede seleccionar entre diferentes produc
 
 ## Dependencias:
 
--   [sweetalert2](https://sweetalert2.github.io/)
 -   [Sass](https://sass-lang.com/)
 
 ### Clonar e Instalar dependencias:
 
 ```bash
     git clone https://github.com/FCampo7/simulador-compras-online.git
-```
-
-```bash
-    npm install
 ```
 
 ## Estructura del proyecto:
