@@ -3,12 +3,28 @@
 // Para no mezclar nombres de variables
 // que podrían llevar a errores o confusiones
 
-// Array de objetos de productos
-// Cada objeto tiene un nombre y un precio
+/**
+ * @typedef {Object} Producto
+ * @property {string} nombre - Nombre del producto
+ * @property {number} precio - Precio del producto
+ * @property {string} image - Ruta de la imagen del producto
+ * @property {number} [cantidad] - Cantidad de este producto (en el carrito)
+ */
+
+/**
+ * Array de objetos de productos disponibles en la tienda.
+ * Cada objeto debe incluir nombre, precio e imagen.
+ * @type {Producto[]}
+ */
 let listaProductos = [];
 
-// Función para cargar los productos desde un archivo JSON
-// Utiliza fetch para obtener los datos
+/**
+ * Carga los productos desde un archivo JSON.
+ *
+ * @async
+ * @returns {Promise<Producto[]>} Una promesa que se resuelve con la lista de productos.
+ * @throws {Error} Si ocurre un error al obtener los productos desde el servidor.
+ */
 async function cargarProductos() {
 	const response = await fetch("./src/json/productos.json");
 	if (!response.ok) {
@@ -17,14 +33,26 @@ async function cargarProductos() {
 	return response.json();
 }
 
-// Array para almacenar los productos del carrito
-// Inicialmente está vacío
+/**
+ * Array para almacenar los productos del carrito.
+ * Inicialmente se carga desde localStorage (si existe).
+ *
+ * @type {Producto[]}
+ */
 let storedCartProducto = localStorage.getItem("cart");
 let listaCarrito = storedCartProducto ? JSON.parse(storedCartProducto) : [];
 
-// Agregar un producto al carrito
 //* Tendría que manejarme por ID pero como me di cuenta tarde
 //* lo hago por nombre, no es lo mejor pero funciona
+/**
+ * Agrega un producto al carrito.
+ *
+ * Si el producto ya existe en el carrito, incrementa su cantidad.
+ * De lo contrario, lo agrega con cantidad inicial 1.
+ *
+ * @param {Producto} producto - Producto a agregar al carrito.
+ * @returns {void}
+ */
 function agregarAlCarrito(producto) {
 	const copiaProducto = { ...producto }; // Crea una copia del producto para evitar mutaciones, Lo busque en internet
 
@@ -40,7 +68,12 @@ function agregarAlCarrito(producto) {
 	localStorage.setItem("cart", JSON.stringify(listaCarrito));
 }
 
-// Actualiza el badge del carrito con la cantidad de productos
+/**
+ * Actualiza el badge del carrito con la cantidad de productos.
+ *
+ * @param {Producto[]} lcart - Carrito del que se quiere actualizar el badge.
+ * @returns {void}
+ */
 function actualizarBadgeCarrito(lcart) {
 	let cartBadge = document.getElementById("cart-badge");
 
@@ -53,12 +86,27 @@ function actualizarBadgeCarrito(lcart) {
 	}
 }
 
-// Mostrar una notificación al usuario cuando un producto es agregado al carrito
-// Aplica un efecto de fade-in al aparecer y fade-out al desaparecer
-// La notificación se muestra por 5 segundos
+/**
+ * Timeout para ocultar la notificación de producto agregado.
+ * @type {number|undefined}
+ */
 let ocultarNotificacionTimeOut;
+
+/**
+ * Timeout para ocultar completamente la notificación después del fade-out.
+ * @type {number|undefined}
+ */
 let ocultarTotalTimeOut;
 
+/**
+ * Muestra una notificación al usuario cuando un producto es agregado al carrito.
+ *
+ * La notificación aparece con un efecto de fade-in,
+ * permanece visible durante 4 segundos y luego desaparece con fade-out.
+ *
+ * @param {Producto} producto - El producto que se ha agregado al carrito.
+ * @returns {void}
+ */
 function mostrarNotificacion(producto) {
 	let notification = document.getElementsByClassName("notification");
 
@@ -82,8 +130,15 @@ function mostrarNotificacion(producto) {
 	}, 4000);
 }
 
-// Renderiza los productos en el DOM
-// Crea elementos HTML para cada producto y los agrega al contenedor de productos
+/**
+ * Renderiza los productos en el DOM.
+ *
+ * Crea elementos HTML para cada producto y los agrega al contenedor de productos.
+ * También añade eventos para permitir al usuario agregarlos al carrito.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function renderizarProductos() {
 	// Espera a que se carguen los productos antes de renderizar
 	try {

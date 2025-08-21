@@ -6,10 +6,19 @@
 let cartList = document.getElementById("cart-list");
 let storedCart = localStorage.getItem("cart");
 
+/**
+ * Lista de productos en el carrito.
+ * Se inicializa desde localStorage si existe,
+ * de lo contrario empieza vacío.
+ * @type {Array<{nombre: string, precio: number, cantidad: number, image: string}>}
+ */
 let cartItems = storedCart ? JSON.parse(storedCart) : [];
 
-// Eliminar un producto del carrito
-// Busca el producto en el carrito y lo elimina si existe
+/**
+ * Elimina un producto del carrito o reduce su cantidad.
+ *
+ * @param {{nombre: string, precio: number, cantidad: number, image: string}} producto - Producto a eliminar o reducir.
+ */
 function eliminarDelCarrito(producto) {
 	const index = cartItems.indexOf(producto);
 
@@ -23,8 +32,11 @@ function eliminarDelCarrito(producto) {
 	}
 }
 
-// Calcular el total del carrito
-// Suma los precios de todos los productos en el carrito
+/**
+ * Calcula el total del carrito sumando precios * cantidades.
+ *
+ * @returns {number} Total del carrito en dinero.
+ */
 function calcularTotal() {
 	let total = 0;
 
@@ -35,7 +47,12 @@ function calcularTotal() {
 	return total;
 }
 
-// Actualizar el total en el DOM
+/**
+ * Actualiza en el DOM la visualización del total del carrito
+ * y muestra el detalle de cada producto.
+ *
+ * Si el carrito está vacío, muestra un mensaje indicándolo.
+ */
 function actualizarTotal() {
 	let totalContainer = document.querySelector(".total-container");
 	totalContainer.innerHTML = "<h3>Detalle del pedido</h3>";
@@ -61,16 +78,24 @@ function actualizarTotal() {
 	}
 }
 
+/**
+ * Guarda el carrito en localStorage y actualiza
+ * la interfaz gráfica.
+ */
 function guardarCarrito() {
 	localStorage.setItem("cart", JSON.stringify(cartItems));
 	actualizarTotal();
 	actualizarBadgeCarrito(cartItems);
 }
 
-// Renderiza los productos en el carrito
-// Crea elementos HTML para cada producto en el carrito y los agrega al DOM
-//? Me quedó una función muy grande
-//? Pero no se si vale la pena dividirla
+/**
+ * Renderiza los productos del carrito en el DOM.
+ *
+ * Crea elementos HTML para cada producto y agrega
+ * eventos para modificar cantidades o eliminar productos.
+ *
+ * @todo Evaluar si conviene dividir esta función en funciones más pequeñas.
+ */
 function renderizarCarrito() {
 	cartItems.forEach((item) => {
 		let cartItemElement = document.createElement("div");
