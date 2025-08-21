@@ -1,0 +1,16 @@
+{
+	"name": "simulador-compras-online",
+	"version": "1.0.0",
+	"description": "Simulador de compras online",
+	"main": "main.js",
+	"dependencies": {
+		"sweetalert2": "^11.22.4",
+		"sass": "^1.89.2"
+	},
+	"author": "Francisco Luis Campo <fcampo7@hotmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fcampo7/simulador-compras-online.git"
+	}
+}
