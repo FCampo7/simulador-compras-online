@@ -65,6 +65,20 @@ function sweetAlertFinalizarCompra() {
 
 			const monthInput = document.getElementById("swal-input-month");
 
+			const cvvInput = document.getElementById("swal-input-cvv");
+
+			cvvInput.addEventListener("input", () => {
+				let value = cvvInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
+				if (value > 999) value = "999"; // máximo 999
+				cvvInput.value = value.substring(0, 3); // máximo 3 dígitos
+			});
+
+			monthInput.addEventListener("input", () => {
+				let value = monthInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
+				if (value > 12) value = "12"; // máximo 12
+				monthInput.value = value.substring(0, 2); // máximo 2 dígitos
+			});
+
 			monthInput.addEventListener("change", () => {
 				let value = monthInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
 				value = value.substring(0, 2); // máximo 2 dígitos
