@@ -54,8 +54,8 @@ function sweetAlertFinalizarCompra() {
 		html: `<input placeholder='Titular de la tarjeta' id='swal-input-nombre' class='swal2-input'>
 			<input type="text" placeholder='Número de tarjeta' id='swal-input-numero' class='swal2-input'>
 			<div class="swal2-input-container">
-				<input type='number' min=1 max=12 placeholder='Mes' id='swal-input-month' class='swal2-input'>
-				<input type='number' min=1920 max=2050 placeholder='Año' id='swal-input-year' class='swal2-input'>
+				<input type='number' min=1 max=12 placeholder='MM' id='swal-input-month' class='swal2-input'>
+				<input type='number' min=1920 max=2050 placeholder='AAAA' id='swal-input-year' class='swal2-input'>
 				<input type="number" min=0 max=999 placeholder='CVV' id='swal-input-cvv' class='swal2-input'>
 			</div>`,
 		confirmButtonText: "Ok",
@@ -63,6 +63,19 @@ function sweetAlertFinalizarCompra() {
 		didOpen: () => {
 			const numeroInput = document.getElementById("swal-input-numero");
 
+			const monthInput = document.getElementById("swal-input-month");
+
+			monthInput.addEventListener("change", () => {
+				let value = monthInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
+				value = value.substring(0, 2); // máximo 2 dígitos
+				if (value.length === 1) {
+					value = "0" + value; // agregar un 0 al principio si es necesario
+				}
+				if (value <= 0) {
+					value = "01"; // si el valor es menor o igual a 0, establecerlo en 01
+				}
+				monthInput.value = value;
+			});
 			//Separa el numero de la tarjeta de crédito cada 4 dígitos
 			numeroInput.addEventListener("input", () => {
 				let value = numeroInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
