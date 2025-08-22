@@ -77,9 +77,15 @@ function actualizarTotal() {
 	const btnFinalizar = document.querySelector(".btn-finalizar");
 	btnFinalizar.addEventListener("click", () => {
 		Swal.fire({
-			title: "Error!",
+			title: "Datos de la tarjeta",
 			text: "Sistema de pagos aún no implementado",
-			icon: "error",
+			html: `<input placeholder='Titular de la tarjeta' id='swal-input-nombre' class='swal2-input'>
+			<input type="number" placeholder='Número de tarjeta' id='swal-input-numero' class='swal2-input'>
+			<div class="swal2-input-container">
+				<input type='number' min=1 max=12 placeholder='Mes' id='swal-input-month' class='swal2-input'>
+				<input type='number' min=1920 max=2050 placeholder='Año' id='swal-input-year' class='swal2-input'>
+				<input type="number" min=0 max=999 placeholder='CVV' id='swal-input-cvv' class='swal2-input'>
+			</div>`,
 			confirmButtonText: "Ok",
 		});
 	});
