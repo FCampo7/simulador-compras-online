@@ -47,6 +47,91 @@ function calcularTotal() {
 	return total;
 }
 
+function sweetAlertFinalizarCompra() {
+	Swal.fire({
+		title: "Datos de la tarjeta",
+		text: "Sistema de pagos aún no implementado",
+		html: `<input placeholder='Titular de la tarjeta' id='swal-input-nombre' class='swal2-input'>
+			<input type="text" placeholder='Número de tarjeta' id='swal-input-numero' class='swal2-input'>
+			<div class="swal2-input-container">
+				<input type='number' min=1 max=12 placeholder='Mes' id='swal-input-month' class='swal2-input'>
+				<input type='number' min=1920 max=2050 placeholder='Año' id='swal-input-year' class='swal2-input'>
+				<input type="number" min=0 max=999 placeholder='CVV' id='swal-input-cvv' class='swal2-input'>
+			</div>`,
+		confirmButtonText: "Ok",
+		focusConfirm: false,
+		didOpen: () => {
+			const numeroInput = document.getElementById("swal-input-numero");
+
+			//Separa el numero de la tarjeta de crédito cada 4 dígitos
+			numeroInput.addEventListener("input", () => {
+				let value = numeroInput.value.replace(/\D/g, ""); // eliminar todo lo que no sea número
+				value = value.substring(0, 16); // máximo 16 dígitos
+				numeroInput.value = value.replace(/(.{4})/g, "$1 ").trim(); // separar cada 4 dígitos
+			});
+		},
+		preConfirm: () => {
+			const nombre = document
+				.getElementById("swal-input-nombre")
+				.value.trim();
+			const numero = document
+				.getElementById("swal-input-numero")
+				.value.trim();
+			const month = document
+				.getElementById("swal-input-month")
+				.value.trim();
+			const year = document
+				.getElementById("swal-input-year")
+				.value.trim();
+			const cvv = document.getElementById("swal-input-cvv").value.trim();
+
+			// Validaciones
+			if (!nombre) {
+				Swal.showValidationMessage("El nombre es obligatorio");
+				return false;
+			}
+
+			if (!numero || numero.length < 13 || numero.length > 19) {
+				Swal.showValidationMessage(
+					"Número de tarjeta inválido (13-19 dígitos)"
+				);
+				return false;
+			}
+
+			if (
+				!month ||
+				month < 1 ||
+				month > 12 ||
+				(month < new Date().getMonth() + 1 &&
+					year == new Date().getFullYear())
+			) {
+				Swal.showValidationMessage("Mes inválido (1-12)");
+				return false;
+			}
+
+			if (!year || year < new Date().getFullYear()) {
+				Swal.showValidationMessage("Año inválido");
+				return false;
+			}
+
+			if (!cvv || cvv.length < 3 || cvv.length > 4) {
+				Swal.showValidationMessage("CVV inválido (3-4 dígitos)");
+				return false;
+			}
+
+			return { nombre, numero, month, year, cvv };
+		},
+	}).then((result) => {
+		if (result.isConfirmed) {
+			Swal.fire({
+				title: `Felicidades ${result.value.nombre}`,
+				icon: "success",
+				text: `Su compra fue confirmada`,
+			});
+		}
+	});
+}
+
 /**
  * Actualiza en el DOM la visualización del total del carrito
  * y muestra el detalle de cada producto.
@@ -74,21 +159,13 @@ function actualizarTotal() {
 		2
 	)}</p>
 	<button class="btn-finalizar">Finalizar compra</button>`;
+
 	const btnFinalizar = document.querySelector(".btn-finalizar");
+
 	btnFinalizar.addEventListener("click", () => {
-		Swal.fire({
-			title: "Datos de la tarjeta",
-			text: "Sistema de pagos aún no implementado",
-			html: `<input placeholder='Titular de la tarjeta' id='swal-input-nombre' class='swal2-input'>
-			<input type="number" placeholder='Número de tarjeta' id='swal-input-numero' class='swal2-input'>
-			<div class="swal2-input-container">
-				<input type='number' min=1 max=12 placeholder='Mes' id='swal-input-month' class='swal2-input'>
-				<input type='number' min=1920 max=2050 placeholder='Año' id='swal-input-year' class='swal2-input'>
-				<input type="number" min=0 max=999 placeholder='CVV' id='swal-input-cvv' class='swal2-input'>
-			</div>`,
-			confirmButtonText: "Ok",
-		});
+		sweetAlertFinalizarCompra();
 	});
+
 	if (cartItems.length === 0) {
 		cartList.innerHTML = '<p class="empty-cart">El carrito está vacío</p>';
 	}
